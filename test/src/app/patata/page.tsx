@@ -8,7 +8,7 @@ const PatataPage=()=>{
     return(
         <div>
             <button onClick={()=>{
-      router.back;
+      router.back();
         }}>Te lleva atrás
             </button>
             <h2>Esta la pagina patata y no la primera</h2>

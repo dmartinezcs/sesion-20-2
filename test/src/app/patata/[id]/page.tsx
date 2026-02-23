@@ -1,0 +1,39 @@
+'use client';
+import { getCharacterById } from "@/lib/api/character";
+import { Character } from "@/types";
+import { AxiosError } from "axios";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+const EstaRecibeId = () => {
+    
+    const {id}= useParams();
+
+    const [personaje,setPersonaje] = useState<Character|null>(null);
+    const [error,setError]= useState<string>("");
+    const [loading,setLoading]= useState<boolean>(true);
+    
+    useEffect(()=>{
+        getCharacterById(Number(id)).then((res)=>{
+            setPersonaje(res);
+        }).catch((e:AxiosError)=>{
+            setError(e.message);
+        }).finally(()=>{
+            setLoading(false);
+        })
+    },[id]);
+
+    return(
+        <div>
+            <h1>Esta es la que recibe el id y el id es :{id}</h1>
+
+        {personaje &&
+        <>
+        </>
+        }
+
+        </div>
+    )
+}
+
+export default EstaRecibeId;
